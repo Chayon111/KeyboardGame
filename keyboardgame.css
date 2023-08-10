@@ -1,0 +1,51 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#gameBoard{
+    width: 50vw;
+    height: 50vh;
+}
+#alphabet{
+    font-size: 300px;
+    text-shadow: 0px 0px 5px #ffffff;
+    /* display: none; */
+}
+#choseGame{
+    font-size: 70px;
+}
+.dropdown-menu.sub-menu {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 100%;
+}
+.dropdown-item{
+    cursor: pointer;
+}
+.dropdown-submenu:hover .sub-menu {
+    display: block;
+}
+.displayNone{
+    display: none;
+}
+
+.alertBox {
+    position: absolute;
+    padding: 10px;
+    color: red;
+    border: 1px solid #ff0000;
+    display: none;
+}
+
+#startGame{
+    position: absolute;
+    top: 50%;
+    padding: 5px;
+    color: #3d90a5;
+    border: 1px solid #f7f4f4;
+    display: none;
+    cursor: pointer;
+}

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Title</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS v5.2.1 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
+    <link rel="icon" type="image/x-icon" href="data:image/x-icon;,">
+
+  <!-- Bootstrap icon -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
+  <link rel="stylesheet" href="keyboardgame.css">
+
+</head>
+
+<body>
+  <header>
+    <div class="container mt-4 d-flex justify-content-center ">
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle fs-3" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          Game Menu
+        </button>
+        <div id="dropdownMenu" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <div class="dropdown-submenu">
+            <h5 class="dropdown-item" href="#">Simple (A-Z)</h5>
+            <div class="dropdown-menu sub-menu" aria-labelledby="dropdownMenuButton">
+              <a id="alphShow" class="dropdown-item" href="#">Show Alphabet</a>
+              <a id="manuPlaGame" class="dropdown-item" href="#">Play Game</a>
+            </div>
+          </div>
+          <div class="dropdown-submenu ">
+            <h5 id="RandomAlphShow" class="dropdown-item " href="#">Hard (Random)</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- place navbar here -->
+  </header>
+  <main>
+    <div class="container">
+      <h1 class="displayScore displayNone">Your Score : <span id="score"> 0 </span></h1>
+      <div class="d-flex justify-content-evenly mt-2 ">
+        <h3 class="displayMis displayNone ">MisKey : <span id="mistake"> 0 </span></h3>
+        <button class="displayPla displayNone "  id="playBtn" >Play <i class="bi bi-play"></i></button>
+        <div id="stopwatch" class="displayNone fs-1 text-bg-warning text-danger p-3 pt-0 pb-0 rounded-3">00:00:00</div>
+        <h3 class="displayRig displayNone ">RightKey : <span id="rightKey"> 0 </span></h3>
+        <button class="displayPau displayNone " id="pauseBtn">Pause <i class="bi bi-pause"></i></button >
+      </div>
+      <div class="d-flex justify-content-center align-items-center ">
+        <div id="gameBoard" class="bg-black text-center d-flex justify-content-center align-items-center opacity-50 rounded-3">
+          <h1 id="alphabet" class="fw-bold mb-5"></h1>
+          <h1 id="choseGame" class="fw-bold ">Chose Game Menu</h1>
+          <h1 id="gameOver" class="alertBox fw-bold fs-1"> GAME OVER</h1>
+          <h1 id="startGame" class="fw-bold fs-2 mt-3 "> Play Game</h1>
+          <div id="alertBox" class="alertBox fw-bold fs-5 ">Incorrect Key Press!</div> <!-- for alert box-->
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <!-- place footer here -->
+  </footer>
+  <!-- Bootstrap JavaScript Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+    integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+  </script>
+
+  <script src="keyboardgame.js"></script>
+</body>
+
+</html>
