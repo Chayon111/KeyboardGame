@@ -47,19 +47,18 @@
   </header>
   <main>
     <div class="container">
-      <h1 class="displayScore displayNone">Your Score : <span id="score"> 0 </span></h1>
+      <h1 class="displayScore displayNone text-bg-secondary w-25 p-1 rounded-3">Your Score : <span id="score"> 0 </span></h1>
       <div class="d-flex justify-content-evenly mt-2 ">
-        <h3 class="displayMis displayNone ">MisKey : <span id="mistake"> 0 </span></h3>
-        <button class="displayPla displayNone "  id="playBtn" >Play <i class="bi bi-play"></i></button>
+        <h3 class="displayMis displayNone text-bg-danger p-1 rounded-3">MisKey : <span id="mistake"> 0 </span></h3>
         <div id="stopwatch" class="displayNone fs-1 text-bg-warning text-danger p-3 pt-0 pb-0 rounded-3">00:00:00</div>
-        <h3 class="displayRig displayNone ">RightKey : <span id="rightKey"> 0 </span></h3>
-        <button class="displayPau displayNone " id="pauseBtn">Pause <i class="bi bi-pause"></i></button >
+        <h3 class="displayRig displayNone text-bg-success p-1 rounded-3">RightKey : <span id="rightKey"> 0 </span></h3>
       </div>
-      <div class="d-flex justify-content-center align-items-center ">
-        <div id="gameBoard" class="bg-black text-center d-flex justify-content-center align-items-center opacity-50 rounded-3">
+      <div class="container d-flex justify-content-center align-items-center ">
+        <div id="gameBoard" class="bg-black text-center d-flex justify-content-center align-items-center rounded-3 ">
           <h1 id="alphabet" class="fw-bold mb-5"></h1>
           <h1 id="choseGame" class="fw-bold ">Chose Game Menu</h1>
           <h1 id="gameOver" class="alertBox fw-bold fs-1"> GAME OVER</h1>
+          <h1 id="Congrst" class="displayNone fw-bold fs-1 mt-4 mb-2 position-absolute">Congratulation you didn't pressed any miskeys.</h1>
           <h1 id="startGame" class="fw-bold fs-2 mt-3 "> Play Game</h1>
           <div id="alertBox" class="alertBox fw-bold fs-5 ">Incorrect Key Press!</div> <!-- for alert box-->
         </div>

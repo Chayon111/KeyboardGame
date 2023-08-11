@@ -6,11 +6,10 @@ let stopwatch = document.getElementById("stopwatch");
 let alphabet = document.getElementById("alphabet");
 let mistakeElement = document.getElementById("mistake");
 let rightKeyElement = document.getElementById("rightKey");
-let playBtn = document.getElementById("playBtn");
-let pauseBtn = document.getElementById("pauseBtn");
 let scoreElement = document.getElementById("score");
 let startGame = document.getElementById("startGame");
 let gameOver = document.getElementById("gameOver");
+let Congrst = document.getElementById("Congrst");
 let dropdownMenuButton = document.getElementById("dropdownMenuButton");
 let dropdownMenu = document.getElementById("dropdownMenu");
 let displayScore = document.querySelector(".displayScore");
@@ -47,16 +46,31 @@ function updateDisplay() {
   const seconds = Math.floor((currentTime % 60000) / 1000);
   const milliseconds = currentTime % 1000;
   stopwatch.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}:${milliseconds.toString().padStart(3, '0')}`;
+
+      // for time over
+      if (minutes >= 2){
+      stopWatch();
+      gameActive = false;
+      gameOver.textContent = "Time Over";
+      gameOver.style.display = "block";
+      startGame.style.display = "block";
+      alphabet.style.display = "none";
+      if (mistakes === 0) {
+        Congrst.style.display = "block";
+        Congrst.style.color = "green";
+      }
+    }
 }
 function startWatch() {
   if (!gameActive) return;
   if (!running) {
     startTime = new Date().getTime();
     intervalId = setInterval(updateDisplay, 10);
-    running = true; // Set running to true
+    running = true; // running to true
   }
 }
 function stopWatch(){
+  if (!gameActive) return;
   clearInterval(intervalId);
   running = false;
 }
@@ -65,15 +79,10 @@ function watchReset() {
   stopWatch();
   stopwatch.textContent = '00:00:00';
 }
-
-
-
 // =============================================================================================
 // Just show alphabet by setInterval
 function displayAlphabetOneByOne() {
   choseGame.style.display = "none";
-  displayPla.style.display = "block";
-  displayPau.style.display = "block";
   displayScore.style.display = "none";
   displayMis.style.display = "none";
   displayRig.style.display = "none";
@@ -83,11 +92,9 @@ function displayAlphabetOneByOne() {
   const interval = setInterval(() => {
     if (currentIndex < myAlphabet.length) {
       alphabet.textContent = myAlphabet[currentIndex];
+      audioPlay();
       currentIndex++;
       currentMp3++;
-      audioPlay();
-      // console.log(currentIndex);
-      // console.log(currentMp3);
     } else {
       clearInterval(interval); // Stop the interval when all elements have been displayed
       startGame.style.display = "block";
@@ -99,10 +106,9 @@ function displayAlphabetOneByOne() {
       // audio play function
       function audioPlay() {
         let audio = new Audio(alphMp3[currentMp3]);
-        // console.log(audio);
         audio.play();
       }
-      
+
       // for startGame button
       function playGame(){
         location.reload();
@@ -118,12 +124,8 @@ function handleKeyDown(event) {
   stopwatch.style.display = "block";
   displayMis.style.display = "block";
   displayRig.style.display = "block";
-  displayPla.style.display = "none";
-  displayPau.style.display = "none";
   const keyPressed = event.key.toUpperCase();
   const currentLetter = myAlphabet[currentAlp];
-  // console.log(keyPressed);
-  // console.log(currentLetter);
   
   if (keyPressed === currentLetter) {
     rightKeys++;
@@ -134,20 +136,20 @@ function handleKeyDown(event) {
     alertBox.style.display = "block";
   }
 
+  audioPlay();
   currentAlp++;
   currentMp3++
-  audioPlay();
-  // console.log(currentAlp);
-  // console.log(currentMp3);
 
-  if (currentAlp >= myAlphabet.length) {
-    
+  if (currentAlp >= myAlphabet.length) {    
     stopWatch();
+    if (rightKeys === 26){
+      gameOver.textContent = "Congratulation you pressed all rightKeys";
+      gameOver.style.color = "green";
+    }
     gameOver.style.display = "block";
     startGame.style.display = "block";
     gameActive = false;
   }
-
   // Hide the alert box after a certain time (e.g., 2 seconds)
   setTimeout(() => {
       alertBox.style.display = "none";
@@ -169,8 +171,6 @@ function randomAlph(e){
   stopwatch.style.display = "block";
   displayMis.style.display = "block";
   displayRig.style.display = "block";
-  displayPla.style.display = "none";
-  displayPau.style.display = "none";
   choseGame.style.display = "none";
 
   const keyPress = e.key.toUpperCase();
@@ -188,17 +188,18 @@ function randomAlph(e){
     showRanAlph = Math.floor(Math.random() * myAlphabet.length);
   }
 
-  // if (currentAlp >= myAlphabet.length) {
-  //   gameOver.style.display = "block"
-  //   startGame.style.display = "block"
-  //   gameActive = false;
-  //   // currentAlp = 0;
-  // }
-
   // Hide the alert box after a certain time (e.g., 2 seconds)
   setTimeout(() => {
       alertBox.style.display = "none";
   }, 1000);
+
+  let audio = new Audio(alphMp3[showRanAlph]);
+  audio.play();
+
+  // if (mistakes >= 0) {
+  //   Congrst.style.display = "block";
+  //   Congrst.style.color = "green";
+  // }
 
   alphabet.textContent = myAlphabet[showRanAlph];
   mistakeElement.textContent = mistakes;
@@ -206,7 +207,6 @@ function randomAlph(e){
   scoreElement.textContent = score;
 }
 // =============================================================================================
-
 // for show alphabet
 function showAlph(){
   displayAlphabetOneByOne();
@@ -230,7 +230,6 @@ manuPlaGame.addEventListener('click', () =>{
     dropdownMenu.style.display = "none";
 });
 
-
 RandomAlphShow.addEventListener('click', () => {
   // Attach the keydown event listener to the window
   choseGame.style.display = "none";
@@ -238,8 +237,9 @@ RandomAlphShow.addEventListener('click', () => {
   window.addEventListener('keydown', randomAlph);
   dropdownMenuButton.disabled = true;
   dropdownMenu.style.display = "none";
+  let audio = new Audio(alphMp3[showRanAlph]);
+  audio.play();
 });
-
 
 startGame.addEventListener('click', playGame);
 // =============================================================================================
